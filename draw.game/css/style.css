@@ -1,0 +1,582 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #e6f7ee 0%, #d4f2e1 100%);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #0b6e4f;
+        }
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(11, 110, 79, 0.2);
+        }
+        h1, h2, h3, h4 {
+            color: #085c3f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* 新增角色选择样式 */
+        .role-select-panel {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0fcf8;
+            border-radius: 10px;
+            border: 2px solid #66ccaa;
+        }
+        .role-title {
+            color: #085c3f;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .role-btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 8px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .role-creator {
+            background: #085c3f;
+            color: white;
+        }
+        .role-guesser {
+            background: #66ccaa;
+            color: #085c3f;
+        }
+        .role-btn:hover {
+            transform: scale(1.05);
+        }
+        .role-tip {
+            color: #66ccaa;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .auth-panel {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed #96e0c7;
+        }
+        .auth-input {
+            padding: 10px;
+            border: 2px solid #66ccaa;
+            border-radius: 8px;
+            width: 180px;
+            color: #085c3f;
+        }
+        .auth-tip {
+            text-align: center;
+            color: #0b6e4f;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        .auth-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: #66ccaa;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .auth-btn:hover {
+            background: #085c3f;
+        }
+        .user-info {
+            text-align: center;
+            color: #085c3f;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .user-info a {
+            color: #0b6e4f;
+        }
+        /* 出题者面板 */
+        .creator-panel {
+            display: none;
+            background: #f0fcf8;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #66ccaa;
+            margin: 15px 0;
+        }
+        /* 答题者面板 */
+        .guesser-panel {
+            display: none;
+        }
+        .record-panel {
+            background: #f0fcf8;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #66ccaa;
+            margin: 15px 0;
+            display: none;
+        }
+        .record-title {
+            color: #085c3f;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .record-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .record-item {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(11, 110, 79, 0.1);
+        }
+        .record-label {
+            font-size: 13px;
+            color: #66ccaa;
+        }
+        .record-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #085c3f;
+        }
+        .record-history {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 2px dashed #96e0c7;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #f0fcf8;
+            font-size: 14px;
+            color: #085c3f;
+        }
+        .history-topic {
+            flex: 1;
+            color: #085c3f;
+        }
+        .history-result {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .history-correct {
+            background: #96e0c7;
+            color: #085c3f;
+        }
+        .history-wrong {
+            background: #f0fcf8;
+            color: #085c3f;
+            border: 1px solid #66ccaa;
+        }
+        .guess-set-area {
+            background: #f0fcf8;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #66ccaa;
+            margin-bottom: 15px;
+        }
+        .guess-title {
+            color: #085c3f;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .guess-set-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #66ccaa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #085c3f;
+        }
+        .topic-list {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 2px dashed #96e0c7;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .topic-item {
+            background: white;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #085c3f;
+        }
+        .topic-creator {
+            font-weight: bold;
+            color: #085c3f;
+            font-size: 13px;
+        }
+        .topic-content {
+            flex: 1;
+            margin: 0 10px;
+            font-size: 14px;
+            color: #0b6e4f;
+        }
+        /* 答题者看不到题目内容，仅显示画板 */
+        .guesser-hide {
+            display: none !important;
+        }
+        .topic-select-btn {
+            background: #96e0c7;
+            color: #085c3f;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .topic-delete-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            display: none;
+        }
+        .hint-panel {
+            text-align: center;
+            margin: 10px 0;
+            color: #085c3f;
+            font-size: 14px;
+        }
+        .hint-btn {
+            background: #085c3f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: 10px;
+            display: none;
+        }
+        .guess-panel {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .guess-input {
+            padding: 10px;
+            border: 2px solid #66ccaa;
+            border-radius: 8px;
+            width: 220px;
+            color: #085c3f;
+        }
+        .result-text {
+            text-align: center;
+            font-weight: bold;
+            color: #085c3f;
+            margin-bottom: 15px;
+        }
+        .canvas-wrap {
+            width: 100%;
+            height: 480px;
+            border: 4px solid #66ccaa;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        #canvas {
+            width: 100%;
+            height: 100%;
+            background: white;
+            cursor: crosshair;
+        }
+        .tool-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        .color-btn {
+            width: 35px;
+            height: 35px;
+            padding: 0;
+            border-radius: 50%;
+            border: 2px solid #eee;
+        }
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+        #black { background: #000000; }
+        #pink { background: #ff69b4; }
+        #blue { background: #4169e1; }
+        #yellow { background: #ffd700; }
+        #red { background: #ff0000; }
+        #green { background: #085c3f; }
+        #purple { background: #9900cc; }
+        #orange { background: #ff9900; }
+        #gray { background: #999999; }
+        #eraser { background: #f5f5f5; color: #085c3f; }
+        #clear { background: #ff4444; }
+        .size-btn { background: #66ccaa; }
+        .save-btn { background: #96e0c7; color: #085c3f; }
+        .publish-btn { background: #085c3f; }
+        /* 答题者不可用绘画工具 */
+        .guesser-tool-hide {
+            display: none !important;
+        }
+        .community-wrap {
+            display: flex;
+            gap: 25px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .publish-area {
+            flex: 1;
+            min-width: 300px;
+            border: 2px solid #66ccaa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .desc-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #66ccaa;
+            border-radius: 8px;
+            resize: none;
+            height: 100px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #085c3f;
+        }
+        .category-select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #66ccaa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: #085c3f;
+        }
+        .community-wall {
+            flex: 2;
+            min-width: 500px;
+            border: 2px solid #66ccaa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .sort-bar {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .sort-btn {
+            background: #f0fcf8;
+            color: #085c3f;
+            border: 2px solid #66ccaa;
+        }
+        .sort-btn.active {
+            background: #085c3f;
+            color: white;
+        }
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .work-card {
+            background: #f0fcf8;
+            border-radius: 10px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(11, 110, 79, 0.1);
+            transition: transform 0.3s;
+            color: #085c3f;
+        }
+        .work-card:hover {
+            transform: translateY(-5px);
+        }
+        .work-author {
+            font-weight: bold;
+            color: #085c3f;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .work-desc {
+            color: #0b6e4f;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .work-img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            margin-bottom: 8px;
+            background: white;
+        }
+        .work-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #66ccaa;
+            gap: 5px;
+        }
+        .comment-btn {
+            background: #96e0c7;
+            color: #085c3f;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .delete-work-btn {
+            background: #ff4444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            display: none;
+            font-size: 12px;
+        }
+        .login-tip {
+            text-align: center;
+            color: #085c3f;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .comment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 110, 79, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px solid #66ccaa;
+        }
+        .close-modal {
+            text-align: right;
+            cursor: pointer;
+            color: #085c3f;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .modal-work {
+            margin-bottom: 20px;
+            color: #085c3f;
+        }
+        .modal-work-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 5px;
+            border: 1px solid #66ccaa;
+        }
+        .comment-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 15px 0;
+            border: 2px dashed #96e0c7;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .comment-item {
+            background: #f0fcf8;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: #085c3f;
+        }
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .comment-author {
+            font-weight: bold;
+            color: #085c3f;
+            font-size: 14px;
+        }
+        .comment-time {
+            font-size: 11px;
+            color: #66ccaa;
+        }
+        .comment-content {
+            font-size: 13px;
+            color: #0b6e4f;
+            margin-top: 4px;
+        }
+        .delete-comment-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-top: 4px;
+            display: none;
+        }
+        .empty-tip {
+            text-align: center;
+            color: #66ccaa;
+            padding: 40px 0;
+            font-size: 16px;
+        }
